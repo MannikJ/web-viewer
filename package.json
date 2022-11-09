@@ -1,0 +1,22 @@
+{
+  "name": "vbf-viewer-current-wip",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "binary-parser": "2.0.2",
+    "dat.gui": "0.7.9",
+    "detect-gpu": "4.0.18",
+    "lzma-web": "3.0.1",
+    "three": "0.139.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.17.9",
+    "parcel-bundler": "^1.12.5"
+  },
+  "keywords": []
+}
