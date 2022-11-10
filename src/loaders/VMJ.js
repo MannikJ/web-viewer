@@ -13,7 +13,7 @@ class VMJ extends Loader {
     const data = super.getDataLabels();
 
     return Object.assign(data, {
-      Points: this._header.pointCount
+      Points: this._header.pointCount,
     });
   }
 
@@ -37,7 +37,7 @@ class VMJ extends Loader {
               const objectId = configLine.replace("[", "").replace("]", "");
               const newObject = {
                 id: objectId,
-                attributes: {}
+                attributes: {},
               };
               objects.push(newObject);
             } else if (lastObject) {
@@ -54,7 +54,7 @@ class VMJ extends Loader {
 
             return objects;
           }, []);
-        }
+        },
       })
       .uint32("decompressedSize"); // 4 bytes
   }
@@ -77,10 +77,10 @@ class VMJ extends Loader {
   parser() {
     return new Parser()
       .nest("header", {
-        type: this.headerParser()
+        type: this.headerParser(),
       })
       .nest("data", {
-        type: this.dataParser()
+        type: this.dataParser(),
       });
   }
 
@@ -88,12 +88,12 @@ class VMJ extends Loader {
     const decompressedDataParser = Parser.start()
       .endianess("little")
       .string("text", {
-        greedy: true
+        greedy: true,
       });
     return (
       new Parser()
         .nest("header", {
-          type: this.headerParser()
+          type: this.headerParser(),
         })
         // Create new buffer for the compressed part at current offset:
         // .buffer("lzmaBuffer", ({ readUntil: "eof" }))
@@ -102,20 +102,20 @@ class VMJ extends Loader {
           readUntil: "eof",
           // Define function to pre-process the data buffer
           wrapper: async function (buffer) {
-            console.log(this.$parent);
+            console.log(this.$parent.header);
             console.log("LZMA Buffer Length", buffer.length);
             // Decompress LZMA and return it for further parsing
             const lzma = new LZMA();
             return await lzma.decompress(buffer);
           },
           // The parser to run on the decompressed data
-          type: decompressedDataParser
+          type: decompressedDataParser,
         })
     );
   }
 
   async parse() {
-    const vmj = await this.parser().parse();
+    const vmj = await this.parser().parse(await this.buffer());
     console.log(vmj.header);
   }
 }

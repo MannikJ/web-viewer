@@ -1,22 +1,22 @@
 {
-  "name": "vbf-viewer-current-wip",
-  "version": "1.0.0",
-  "description": "",
+  "name": "veb-viewer",
+  "version": "0.0.1",
+  "description": "Tool to display Looxis files in the browser",
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html --open",
     "build": "parcel build index.html"
   },
   "dependencies": {
-    "binary-parser": "2.0.2",
+    "binary-parser": "2.2.1",
     "dat.gui": "0.7.9",
-    "detect-gpu": "4.0.18",
+    "detect-gpu": "4.0.47",
     "lzma-web": "3.0.1",
-    "three": "0.139.0"
+    "three": "0.146.0"
   },
   "devDependencies": {
-    "@babel/core": "7.17.9",
-    "parcel-bundler": "^1.12.5"
+    "@babel/core": "7.20.2",
+    "parcel-bundler": "^1.3.1"
   },
   "keywords": []
 }

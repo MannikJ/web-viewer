@@ -7,7 +7,7 @@ import {
   PerspectiveCamera,
   WebGLRenderer,
   DirectionalLight,
-  HemisphereLight
+  HemisphereLight,
 } from "three";
 
 import VBF from "./loaders/VBF";
@@ -43,8 +43,7 @@ class Viewer {
   async init(container, file) {
     this.gpu = await getGPUTier();
 
-    this.container =
-      container ?? document.querySelector("#viewer-scene-container");
+    this.container = document.querySelector("#viewer-scene-container");
 
     // Creating the this.scene
     this.scene = new Scene();
